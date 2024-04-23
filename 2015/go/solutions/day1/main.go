@@ -1,4 +1,3 @@
-// https://adventofcode.com/2015/day/1
 package main
 
 import (
@@ -8,6 +7,7 @@ import (
 	aoc "github.com/nickmonad/advent-of-code"
 )
 
+// https://adventofcode.com/2015/day/1
 func main() {
 	input, part := aoc.Setup()
 	defer input.Close()
