@@ -12,13 +12,13 @@ import (
 
 // https://adventofcode.com/2015/day/2
 func main() {
-	input, part := aoc.Setup()
+	input, part, _ := aoc.Setup()
 	defer input.Close()
 
-	aoc.Run(part, Part1, Part2, input)
+	aoc.Run(Part1, Part2, input, part, false)
 }
 
-func Part1(r io.Reader) string {
+func Part1(r io.Reader, _ bool) string {
 	buffer := bufio.NewReader(r)
 	total := 0
 
@@ -48,7 +48,7 @@ func Part1(r io.Reader) string {
 	return fmt.Sprintf("%d", total)
 }
 
-func Part2(r io.Reader) string {
+func Part2(r io.Reader, _ bool) string {
 	buffer := bufio.NewReader(r)
 	total := 0
 

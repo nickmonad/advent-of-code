@@ -8,10 +8,11 @@ import (
 	"os"
 )
 
-type Solution func(io.Reader) string
+type Solution func(io.Reader, bool) string
 
-func Setup() (io.ReadCloser, int) {
+func Setup() (io.ReadCloser, int, bool) {
 	part := flag.Int("part", 1, "advent of code day 'part' (1 or 2)")
+	optimized := flag.Bool("optimized", false, "run the optimized version of the solution, if available")
 	flag.Parse()
 
 	args := flag.Args()
@@ -22,7 +23,7 @@ func Setup() (io.ReadCloser, int) {
 	file, err := os.Open(args[0])
 	Check(err)
 
-	return file, *part
+	return file, *part, *optimized
 }
 
 func Check(err error) {
@@ -31,12 +32,12 @@ func Check(err error) {
 	}
 }
 
-func Run(part int, one, two Solution, input io.Reader) {
+func Run(one, two Solution, input io.Reader, part int, optimized bool) {
 	output := func() string {
 		if part == 1 {
-			return one(input)
+			return one(input, optimized)
 		} else {
-			return two(input)
+			return two(input, optimized)
 		}
 	}()
 

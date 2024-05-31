@@ -9,13 +9,13 @@ import (
 
 // https://adventofcode.com/2015/day/1
 func main() {
-	input, part := aoc.Setup()
+	input, part, _ := aoc.Setup()
 	defer input.Close()
 
-	aoc.Run(part, Part1, Part2, input)
+	aoc.Run(Part1, Part2, input, part, false)
 }
 
-func Part1(r io.Reader) string {
+func Part1(r io.Reader, _ bool) string {
 	input, err := io.ReadAll(r)
 	aoc.Check(err)
 
@@ -33,7 +33,7 @@ func Part1(r io.Reader) string {
 	return fmt.Sprintf("%d", floor)
 }
 
-func Part2(r io.Reader) string {
+func Part2(r io.Reader, _ bool) string {
 	input, err := io.ReadAll(r)
 	aoc.Check(err)
 
