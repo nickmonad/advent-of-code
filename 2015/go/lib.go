@@ -6,6 +6,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"time"
 )
 
 type Solution func(io.Reader, bool) string
@@ -33,6 +34,7 @@ func Check(err error) {
 }
 
 func Run(one, two Solution, input io.Reader, part int, optimized bool) {
+	start := time.Now()
 	output := func() string {
 		if part == 1 {
 			return one(input, optimized)
@@ -41,5 +43,7 @@ func Run(one, two Solution, input io.Reader, part int, optimized bool) {
 		}
 	}()
 
+	end := time.Now()
 	fmt.Println(output)
+	fmt.Printf("time: %s\n", end.Sub(start))
 }
